@@ -3,16 +3,17 @@
 {% block content%}
 <form method ="post">
     {%csrf_token%}
-    <label>firstname</label>
-    {{form.firstname}}<br>
+    <label>Username</label>
+    {{form.username}}<br>
+    <label>Firstname</label>
+    {{form.first_name}}<br>
     <label>lastname</label>
-    {{form.lastname}}<br>
+    {{form.last_name}}<br>
     <label>email</label>
     {{form.email}}<br>
     <label>password</label>
     {{form.password}}<br>
-    <label>mobile</label>
-    {{form.mobile}}<br>
+ 
     <button type="submit">Submit</button>
 </form>
 {% endblock content%}

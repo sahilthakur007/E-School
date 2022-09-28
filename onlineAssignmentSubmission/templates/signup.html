@@ -4,21 +4,17 @@
     <div class="form-box">
         <h3 class="text-center" style="color: white; margin-bottom: 4vh;">CREATE AN ACCOUNT</h3>
         <form method="post">
-            {% csrf_token %}
+            {%csrf_token%}
             <div class="name-input">
-                <input type="text" value="" class="form-control" placeholder="First name" style="margin-right: 1vw;">
-                <input type="text" value="" class="form-control" placeholder="Last name" style="margin-left: 1vw;">
+                {{form.first_name}}
+                {{form.last_name}}
             </div>
-            <input type="text" value="" class="form-control form-input" placeholder="Username">
-            <input type="email" value="" class="form-control form-input" placeholder="Email">
-            <input type="password" value="" class="form-control form-input" placeholder="Password">
-            <div class="form-outline mb-2">
-                <select class="select role-selection">
-                    <option value="">Select your role</option>
-                  <option value="Faculty">Faculty</option>
-                  <option value="Student">Student</option>
-                </select>
-            </div>
+            {{form.username}}
+            {{form.email}}
+            {{form.password}}
+            
+           
+            
             <div class="d-flex justify-content-center">
             <button type="submit" class="btn-info btn-lg main-button">Sign up</button>
             </div>
