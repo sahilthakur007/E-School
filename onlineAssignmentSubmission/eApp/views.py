@@ -77,7 +77,8 @@ def loginUser(request):
         username = request.POST.get('email')
         password = request.POST.get('password')
         print(username+" "+password)
-        user = authenticate(request,Email = username,Password = password)
+        
+        user = Teacher.objects.get(email =username)
         print(user)
     return render(request,"Assignments/login.html",{})
 def logout(request):
