@@ -1,0 +1,25 @@
+{% extends "base.html"%}
+{% block content%}
+<div class="main-outer-box"> 
+    <h3 class="mt-5">Assignment Submission</h3>
+
+    <div class="form-control" style="width:70vw; margin: 1vh 0px;">
+        <div style="display: flex; justify-content: space-between;">
+            <div><b>Assignment title</b></div>
+            <div>Due date</div>
+        </div>
+        <div style="margin: 2vh 0px;">
+            <div class="form-control"><b>Assignment desciption</b></div>
+            <a href="" style="text-decoration: none;"><div class="form-control" style="width:20vw; margin: 2vh 0px;">Assignment file</div></a>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; margin-top: 2vh;">
+            <form style="display: flex;" method="post">
+                {% csrf_token %}
+                <input type="file" class="form-control" style="width: 30vw; margin: 0px 1vw;">
+                <button class="btn btn-info" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

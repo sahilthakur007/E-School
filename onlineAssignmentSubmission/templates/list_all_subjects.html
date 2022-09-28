@@ -1,0 +1,24 @@
+{% extends "base.html"%}
+{% block content %}
+<div class="main-outer-box"> 
+    <div class="form-box">
+        {% csrf_token %}
+        <h3 class="text-center" style="color: white; margin-bottom: 4vh;">ADD NEW SUBJECT</h3>
+        <form method="post">
+            <div class="form-outline mb-2">
+                <select class="select role-selection">
+                    <option value="">Select subject</option>
+                  <option value="">Subject 1</option>
+                  <option value="">Subject 2</option>
+                </select>
+            </div>
+            <div class="d-flex justify-content-center">
+            <button type="submit" class="btn-info btn-lg main-button">Add</button>
+            </div>
+        </form>
+    </div>
+    <h3 class="mt-5">Your Subjects</h3>
+    <a href="" style="text-decoration: none;"><div class="form-control" style="width:50vw; margin: 2vh 0px;">Subject 1</div></a>
+    <a href="" style="text-decoration: none;"><div class="form-control" style="width:50vw; margin: 2vh 0px;">Subject 2</div></a>
+</div>
+{% endblock %}

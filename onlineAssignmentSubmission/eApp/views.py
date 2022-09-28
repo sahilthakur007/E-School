@@ -15,7 +15,7 @@ def listAllSubjects(request,id):
     context = {
         "subjects":allsubjects
     }
-    return render(request,"Assignments/list_all_subjects.html",context)
+    return render(request,"list_all_subjects.html",context)
 
 
 def listAllAssignmentForSubjects(request, course_id):
@@ -25,7 +25,7 @@ def listAllAssignmentForSubjects(request, course_id):
     context ={
         "assignments":allAssignments
     }
-    return render(request, "Assignments/list_all_subjects.html", context)
+    return render(request, "list_all_assignments_for_subject.html", context)
 
 def listAllSolutionForAssignment(request,assignment_id):
     assignment = Assignment.objects.get(id=assignment_id)
@@ -34,7 +34,7 @@ def listAllSolutionForAssignment(request,assignment_id):
     context ={
         "sollutions": allSollutions
     }
-    return render(request, "Assignments/list_all_subjects.html", context)
+    return render(request, "list_all_solutions_for_assignment.html", context)
 
 
 def singleAssignment(request, assignment_id):
@@ -43,8 +43,7 @@ def singleAssignment(request, assignment_id):
     context = {
         "assignment": assignment
     }
-    return render(request, "Assignments/list_all_subjects.html", context)
-
+    return render(request, "singleAssignmentStudent.html", context)
 
 def singleSolution(request, submission_id):
     solution = Submission.objects.get(id=submission_id)
@@ -53,7 +52,6 @@ def singleSolution(request, submission_id):
         "assignment": solution
     }
     return render(request, "Assignments/list_all_subjects.html", context)
-
 
 def registerFaculty(request):
     
@@ -69,7 +67,7 @@ def registerFaculty(request):
     context ={
         "form":form
     }
-    return render(request,"Assignments/register.html",context)
+    return render(request,"signup.html",context)
 def loginUser(request):
     # if request.user.is_authenticated:
         # return redirect("home")
@@ -80,7 +78,7 @@ def loginUser(request):
         
         user = Teacher.objects.get(email =username)
         print(user)
-    return render(request,"Assignments/login.html",{})
+    return render(request,"login.html",{})
 def logout(request):
     pass 
 

@@ -1,0 +1,70 @@
+.head-nav-bar{
+    background-color: #33b5e5;
+    height: 60px;
+}
+.role-selection{
+    width: 100%;
+    height: 5vh;
+}
+.main-button{
+    border-radius: 15px;
+    margin: 10px;
+    width: 10vw;
+}
+.main-outer-box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main-box{
+    width: 60%;
+    height: 20vh;
+    display: flex;
+    justify-content: space-around;
+}
+.main-options{
+    display: flex;
+}
+.main-option{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    margin: 5vw 7vw;
+}
+.main-image{
+    width: 60vw;
+    height: 30vw;
+    border: 1px solid grey;
+    margin-top: 5vh;
+    border-radius: 20px;
+}
+.form-box{
+    width: 45vw;
+    border: 1px solid grey;
+    margin-top: 5vh;
+    border-radius: 20px;
+    padding: 3vw;
+    background-color: #2c4047;
+}
+.form-input{
+    margin: 4vh 0px;
+    background-color: white;
+}
+.btn-signup{
+    background-color: white;
+    margin: 4vh;
+}
+.name-input{
+    display: flex;
+}
+.other-option{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    margin-top: 4vh;
+}

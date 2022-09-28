@@ -18,13 +18,13 @@ from django.urls import path, include
 from .views import *
 urlpatterns = [
     path("", home,name="home"),
-    path("<int:id>/subjects/all",listAllSubjects),
-    path("<int:course_id>/assignments/all",listAllAssignmentForSubjects),
-    path("<int:assignment_id>/submissions/",listAllSolutionForAssignment),
-    path("assignments/<int:assignment_id>",singleAssignment),
-    path("submissions/<int:submission_id>",singleSolution),
-    path("register/",registerFaculty),
-    path("login/",loginUser)
+    path("<int:id>/subjects/all",listAllSubjects,name="allSubjects"),
+    path("<int:course_id>/assignments/all",listAllAssignmentForSubjects,name="allAssignments"),
+    path("<int:assignment_id>/submissions/",listAllSolutionForAssignment,name="allSubmissions"),
+    path("assignments/<int:assignment_id>",singleAssignment,name="singleAssignment"),
+    path("submissions/<int:submission_id>",singleSolution,name="singleSubmission"),
+    path("register/",registerFaculty,name="signup"),
+    path("login/",loginUser,name="login")
     
    
 ]

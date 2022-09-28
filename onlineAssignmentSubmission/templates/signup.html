@@ -1,0 +1,32 @@
+{% extends "base.html"%}
+{% block content %}
+<div class="main-outer-box"> 
+    <div class="form-box">
+        <h3 class="text-center" style="color: white; margin-bottom: 4vh;">CREATE AN ACCOUNT</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="name-input">
+                <input type="text" value="" class="form-control" placeholder="First name" style="margin-right: 1vw;">
+                <input type="text" value="" class="form-control" placeholder="Last name" style="margin-left: 1vw;">
+            </div>
+            <input type="text" value="" class="form-control form-input" placeholder="Username">
+            <input type="email" value="" class="form-control form-input" placeholder="Email">
+            <input type="password" value="" class="form-control form-input" placeholder="Password">
+            <div class="form-outline mb-2">
+                <select class="select role-selection">
+                    <option value="">Select your role</option>
+                  <option value="Faculty">Faculty</option>
+                  <option value="Student">Student</option>
+                </select>
+            </div>
+            <div class="d-flex justify-content-center">
+            <button type="submit" class="btn-info btn-lg main-button">Sign up</button>
+            </div>
+        </form>
+        <div class="other-option">
+            <label><h6 style="color: white;">Account already exists?</h6></label>
+            <button class="btn btn-signup" style="margin: 0px;"><a href="{% url 'login' %}" style="text-decoration: none; color: black;"><b>Log in</b></a></button>
+        </div>
+    </div>
+</div>
+{% endblock %}
