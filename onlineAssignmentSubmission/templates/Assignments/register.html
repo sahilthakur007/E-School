@@ -1,0 +1,18 @@
+{% extends "base.html"%}
+
+{% block content%}
+<form method ="post">
+    {%csrf_token%}
+    <label>firstname</label>
+    {{form.firstname}}<br>
+    <label>lastname</label>
+    {{form.lastname}}<br>
+    <label>email</label>
+    {{form.email}}<br>
+    <label>password</label>
+    {{form.password}}<br>
+    <label>mobile</label>
+    {{form.mobile}}<br>
+    <button type="submit">Submit</button>
+</form>
+{% endblock content%}

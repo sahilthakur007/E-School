@@ -4,7 +4,6 @@ from msilib.schema import Class
 from pyexpat import model
 from statistics import mode
 from django.db import models
-
 # course model 
 # student model 
 # teacher model
@@ -61,5 +60,4 @@ class Submission(models.Model):
     
     def __str__(self):
         return self.name
-  
 

@@ -17,7 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import *
 urlpatterns = [
-    path("", home),
-    path("<int:id>/subjects",listAllSubjects)
+    path("", home,name="home"),
+    path("<int:id>/subjects/all",listAllSubjects),
+    path("<int:course_id>/assignments/all",listAllAssignmentForSubjects),
+    path("<int:assignment_id>/submissions/",listAllSolutionForAssignment),
+    path("assignments/<int:assignment_id>",singleAssignment),
+    path("submissions/<int:submission_id>",singleSolution),
+    path("register/",registerFaculty),
+    path("login/",loginUser)
+    
    
 ]
