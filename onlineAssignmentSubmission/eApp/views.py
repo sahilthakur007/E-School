@@ -59,9 +59,7 @@ def registerFaculty(request):
     form = TeacherRegistrationForm()
     if request.method=="POST":
         # print("true")
-        form = TeacherRegistrationForm(request.POST)
-        # tform = TeacherProfileForm(request.POST)
-        
+        form = TeacherRegistrationForm(request.POST)        
         if form.is_valid() :
             user = form.save()
             print("true")
@@ -71,7 +69,6 @@ def registerFaculty(request):
             password = request.POST['password']
             user.set_password(user.password)
             user.save()
-            # print(firstname+" "+lastname+" "+email+" "+password)
             Teacher.objects.create(firstname=firstname,lastname =lastname,email = email,password = password)
             return redirect("home")
         else:
@@ -92,10 +89,12 @@ def loginUser(request):
         
         user = authenticate(username= username,password=password)
         print(user)
+        # teacher.filter
         if user is not None:
             login(request,user)
             return redirect("allSubjects")
     return render(request,"login.html",{})
 def logout(request):
-    pass 
+    logout(request)
+    return redirect("home")
 

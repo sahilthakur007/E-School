@@ -10,7 +10,7 @@ from django import forms
 from .models import *
 
 
-class TeacherRegistrationForm(UserCreationForm):
+class TeacherRegistrationForm(forms.ModelForm):
 	# first_name: forms.CharField(max_length=100,  widgets=forms.TextInput(
 	# 	attrs={'class': 'form-control'}))
 	# last_name: forms.CharField(max_length=100, widgets=forms.TextInput(
@@ -32,6 +32,7 @@ class TeacherRegistrationForm(UserCreationForm):
 			'username': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'username'}),
 			'email': forms.EmailInput(attrs={'class': 'form-control form-input', 'placeholder': 'email'}),
 			'password': forms.PasswordInput(attrs={'class': 'form-control form-input', 'placeholder': 'password'}),
+			
 			
 			
 		}
