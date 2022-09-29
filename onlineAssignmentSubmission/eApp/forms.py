@@ -21,28 +21,37 @@ class TeacherRegistrationForm(forms.ModelForm):
 	# 	attrs={'class': 'form-control form-input'}))
 	# password: forms.CharField(max_length=100, widget=forms.PasswordInput(
 	# 	attrs={'class': 'form-control form-input'}))
-    
 
 	class Meta:
 		model = User
-		fields = ['first_name','last_name', 'username', 'email', 'password']
-		widgets ={
-			'first_name': forms.TextInput(attrs={'class': 'form-control form-input','placeholder':'firstname'}),
+		fields = ['first_name', 'last_name', 'username', 'email', 'password']
+		widgets = {
+			'first_name': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'firstname'}),
 			'last_name': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'lastname'}),
 			'username': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'username'}),
 			'email': forms.EmailInput(attrs={'class': 'form-control form-input', 'placeholder': 'email'}),
 			'password': forms.PasswordInput(attrs={'class': 'form-control form-input', 'placeholder': 'password'}),
-			
-			
-			
+
+
+
 		}
-		
-	
-        
-		
 
 
 class TeacherProfileForm(forms.ModelForm):
     class Meta:
         model = Teacher
         fields = ['firstname', 'lastname', 'email', 'password', 'mobile']
+
+
+class AssignmentCreateForm(forms.ModelForm):
+	class Meta:
+		model = Assignment
+		fields = ['title', 'question', 'instruction', 'deadline', "maxmarks"]
+		widgets = {
+			'title': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'Title Of Assignment'}),
+			'question': forms.FileInput(attrs={'class': 'form-control form-input'}),
+			'instruction': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'Instruction to submit'}),
+			'maxmarks': forms.NumberInput(attrs={'class': 'form-control form-input', 'placeholder': 'Maximum Marks For assignent'}),
+			'deadline': forms.DateInput(attrs={'class': 'form-control form-input', 'placeholder': "dd/mm/yy"}),
+
+		}
