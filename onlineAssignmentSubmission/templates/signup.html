@@ -15,8 +15,9 @@
 <h6 style="color: white;">Please select your role:</h6>
   <input type="radio" name="roll" value="Teacher">
   <label for="html" style="color: white;font-size: 18px;">Teacher</label><br>
-  <input type="radio" name="roll" value="Student">
-  <label for="css" style="color: white;font-size: 18px;">Student</label><br>        
+  <input type="radio" name="roll" value="Student" onclick="enterprn()">
+  <label for="css" style="color: white;font-size: 18px;">Student</label><br> 
+  <input type="text" value="" name = "prn" class="form-control form-input" id="prn" style="display: none;" placeholder="Enter your PRN">       
             <div class="d-flex justify-content-center">
             <button type="submit" class="btn-info btn-lg main-button" style="background-color: #00E5FF;">Sign up</button>
             </div>
@@ -27,4 +28,9 @@
         </div>
     </div>
 </div>
+<script>
+    function enterprn() {
+      document.getElementById("prn").style.display = "block";
+    } 
+</script>
 {% endblock %}

@@ -22,11 +22,14 @@ class Student(models.Model):
 
     firstname = models.CharField(max_length=100, default="")
     lastname = models.CharField(max_length=100, default="")
+    username = models.CharField(max_length=100, default="")
+    identity = models.CharField(max_length=100, default="")
+    PRN = models.CharField(max_length=100, default="")
     email = models.CharField(max_length=100, default="")
     password = models.CharField(max_length=100, default="")
     mobile = models.CharField(max_length=100, default="")
     courses = models.ManyToManyField(Course, default="")
-
+    
     def __str__(self):
         return self.firstname+" "+self.lastname
 
@@ -36,6 +39,8 @@ class Teacher(models.Model):
     lastname = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
+    username = models.CharField(max_length=100, default="")
+    identity = models.CharField(max_length=100, default="")
     mobile = models.CharField(max_length=100)
     courses = models.ManyToManyField(Course)
 
