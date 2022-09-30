@@ -7,6 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="head-nav-bar"><h3 class="text-center p-2">Online School System</h3></nav>
+    <div class="head-nav-bar">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            {% if request.user.is_authenticated %}
+            <a href="javascript:history.go(-1)" style="text-decoration: none; color: black; font-size: 16px; margin-left: 1vw;"><b>&laquo; PREVIOUS</b></a>
+            {% endif %}
+            <h2 class="text-center p-2" style="text-shadow: 1px 1px 6px #cacaca;">Online School System</h2>
+            <div style="display: flex;">
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'home' %}" style="text-decoration: none;color: black; font-size: 16px;"><b>HOME</b></a>
+            <a href="{% url 'logoutuser' %}" style="text-decoration: none;color: black; font-size: 16px; margin-left: 2vw; margin-right: 1vw;"><b>LOG OUT</b></a>
+            {% endif %}
+            </div>
+        </div> 
+    </div>
 </body>
 </html>

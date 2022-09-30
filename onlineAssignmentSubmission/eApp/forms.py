@@ -26,8 +26,8 @@ class TeacherRegistrationForm(forms.ModelForm):
 		model = User
 		fields = ['first_name', 'last_name', 'username', 'email', 'password']
 		widgets = {
-			'first_name': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'firstname'}),
-			'last_name': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'lastname'}),
+			'first_name': forms.TextInput(attrs={'class': 'form-control form-input-fname', 'placeholder': 'firstname'}),
+			'last_name': forms.TextInput(attrs={'class': 'form-control form-input-lname', 'placeholder': 'lastname'}),
 			'username': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'username'}),
 			'email': forms.EmailInput(attrs={'class': 'form-control form-input', 'placeholder': 'email'}),
 			'password': forms.PasswordInput(attrs={'class': 'form-control form-input', 'placeholder': 'password'}),

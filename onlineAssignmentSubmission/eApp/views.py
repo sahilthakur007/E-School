@@ -110,7 +110,7 @@ def registerFaculty(request):
             else:
                 Student.objects.create(
                     firstname=firstname, lastname=lastname, email=email, password=password)
-            return redirect("home")
+            return redirect("allSubjects")
         else:
             print(form.errors)
 
@@ -137,7 +137,7 @@ def loginUser(request):
     return render(request, "login.html", {})
 
 
-def logout(request):
+def logoutuser(request):
     logout(request)
     return redirect("home")
 
