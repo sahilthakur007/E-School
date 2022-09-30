@@ -1,3 +1,4 @@
+from dataclasses import field
 from distutils.command.build_scripts import first_line_re
 from logging import PlaceHolder
 from tkinter import Widget
@@ -53,5 +54,16 @@ class AssignmentCreateForm(forms.ModelForm):
 			'instruction': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'Instruction to submit'}),
 			'maxmarks': forms.NumberInput(attrs={'class': 'form-control form-input', 'placeholder': 'Maximum Marks For assignent'}),
 			'deadline': forms.DateInput(attrs={'class': 'form-control form-input', 'placeholder': "dd/mm/yy"}),
+
+		}
+
+
+class SolutionCreationForm(forms.ModelForm):
+	class Meta:
+		model = Submission
+		fields =["name","answer"]
+		widgets = {
+			'name': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'Title Of Assignment'}),
+			'answer': forms.FileInput(attrs={'class': 'form-control form-input'}),
 
 		}
