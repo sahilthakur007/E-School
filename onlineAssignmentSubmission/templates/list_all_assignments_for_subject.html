@@ -3,7 +3,7 @@
 <div class="main-outer-box"> 
     <h3 class="mt-5">Assignments</h3>
     {%for assignment in assignments%}
-    <a href="" style="text-decoration: none;">
+    <a href="../{{assignment.id}}/submissions" style="text-decoration: none;">
     <div class="form-control" style="width:50vw; margin: 2vh 0px;">{{assignment.title}}</div>
     </a>
     {%endfor%}
@@ -12,13 +12,17 @@
     <div class="form-box">
         
         <h3 class="text-center" style="color: white; margin-bottom: 4vh;">ADD NEW ASSIGNMENT</h3>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="text" value="" class="form-control form-input" placeholder="Title of Assignment">
-            <input type="text" value="" class="form-control form-input" placeholder="Instructions to submit">
-            <input type="file" value="" class="form-control form-input">
-            <label><h6 style="color: white; margin: 0px;">Set due date for submission</h6></label>
-            <input type="date" value="" class="form-control form-input" style="margin: 1px;">
+            {{form.title}}
+            {{form.instruction}}
+            {{form.question}}
+            
+            {{form.maxmarks}}
+            <label>
+                <h6 style="color: white; margin: 0px;">Set due date for submission</h6>
+            </label>
+            {{form.deadline}}
             <div class="d-flex justify-content-center">
             <button type="submit" class="btn-info btn-lg main-button">Add</button>
             </div>
