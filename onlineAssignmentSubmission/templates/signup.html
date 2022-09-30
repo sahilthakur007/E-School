@@ -13,7 +13,7 @@
             {{form.email}}
             {{form.password}}
 <h6 style="color: white;">Please select your role:</h6>
-  <input type="radio" name="roll" value="Teacher">
+  <input type="radio" name="roll" value="Teacher" onclick="enterprnclose()">
   <label for="html" style="color: white;font-size: 18px;">Teacher</label><br>
   <input type="radio" name="roll" value="Student" onclick="enterprn()">
   <label for="css" style="color: white;font-size: 18px;">Student</label><br> 
@@ -32,5 +32,8 @@
     function enterprn() {
       document.getElementById("prn").style.display = "block";
     } 
+    function enterprnclose(){
+        document.getElementById("prn").style.display = "none";
+    }
 </script>
 {% endblock %}
