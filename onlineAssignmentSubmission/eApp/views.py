@@ -13,6 +13,11 @@ def home(request):
 
 
 def listAllSubjects(request):
+    prn=""
+    if request.method == "POST":
+        prn = request.POST.get('select-student-prn')
+    print(prn)
+
     id = (int)(request.user.id)
     teacher = Teacher.objects.get(id=id+1)
     allsubjects = teacher.courses.all()
