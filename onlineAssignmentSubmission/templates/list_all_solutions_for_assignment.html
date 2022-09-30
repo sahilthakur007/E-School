@@ -13,18 +13,13 @@
             <a href="{{solution.answer.url}}" target="_blank" style="text-decoration: none;">
                 <div class="form-control" style="width:20vw;">{{solution.name}}</div>
             </a>
-            {% if isevaluated %}
             <form style="display: flex;" method="post">
                 {% csrf_token %}
                 <input class="form-control" name="marks" style="width: 8vw; margin: 0px 1vw;" placeholder="Enter marks">
                 <input hidden name="solution_id" value="{{solution.id}}" />
                 <button type="submit" class="btn btn-info">Save marks</button>
             </form>
-            {%else%}
-            <p>
-                Evalauted
-            </p>
-            {%endif%}
+          
             
         </div>
     </div>

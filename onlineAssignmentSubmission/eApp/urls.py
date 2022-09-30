@@ -24,7 +24,11 @@ urlpatterns = [
     path("assignments/<int:assignment_id>",singleAssignment,name="singleAssignment"),
     path("submissions/<int:submission_id>",singleSolution,name="singleSubmission"),
     path("register/",registerFaculty,name="signup"),
-    path("login/",loginUser,name="login"),
-    path("logout/",logoutuser,name="logoutuser")
+    path("studentlogin/",loginStudent,name="loginStudent"),
+    path("teacherlogin/",loginTeacher,name="loginTeacher"),
+    path("logout/",logoutuser,name="logoutuser"),
+    path("student/home/", studentHome, name="studentHome"),
+    path("<int:course_id>/student/assignments",
+         listAllAssignmentForSubjectsStudent, name="subjects")
    
 ]

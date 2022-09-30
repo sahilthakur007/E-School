@@ -1,0 +1,25 @@
+{% extends "base.html"%}
+{% block content %}
+<div class="main-outer-box">
+    <div class="form-box">
+        {% csrf_token %}
+        <h3 class="text-center" style="color: white; margin-bottom: 4vh;">LOGIN HERE</h3>
+        <form method="post">
+            {%csrf_token%}
+            <input type="text" value="" name="email" class="form-control form-input" placeholder="Username">
+            <input type="password" name="password" value="" class="form-control form-input" placeholder="Password">
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn-info btn-lg main-button" style="background-color: #00E5FF;">Log
+                    in</button>
+            </div>
+        </form>
+        <div class="other-option">
+            <label>
+                <h6 style="color: white;">New User?</h6>
+            </label>
+            <button class="btn btn-signup" style="margin: 0px;"><a href="{% url 'signup' %}"
+                    style="text-decoration: none; color: black;"><b>Sign up</b></a></button>
+        </div>
+    </div>
+</div>
+{% endblock %}
