@@ -5,6 +5,7 @@ from .forms import *
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib import messages
 # Create your views here.
 
 
@@ -154,7 +155,7 @@ def registerFaculty(request):
                 Student.objects.create(
                     firstname=firstname, lastname=lastname, email=email, password=password, identity="STUDENT", username=username,PRN=prn)
                 return redirect("loginStudent")
-        else:
+        else:   
             print(form.errors)
 
     context = {
@@ -177,6 +178,8 @@ def loginStudent(request):
         if user is not None:
             login(request, user)
             return redirect("studentHome")
+        else: 
+            messages.error(request, "Invaild Credentials")
 
     return render(request, "studentlogin.html", {})
 
@@ -195,6 +198,8 @@ def loginTeacher(request):
         if user is not None:
             login(request, user)
             return redirect("allSubjects")
+        else:
+            messages.error(request, "Invaild Credentials")
 
     return render(request, "studentlogin.html", {})
 def logoutuser(request):

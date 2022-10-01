@@ -18,4 +18,14 @@
         </div>
     </div>
 </div>
+
+<div>
+    {% if messages %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+    {% endif %}
+</div>
+
+
 {% endblock %}
