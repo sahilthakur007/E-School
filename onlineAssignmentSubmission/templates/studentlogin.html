@@ -1,6 +1,6 @@
 {% extends "base.html"%}
 {% block content %}
-<div class="main-outer-box"> 
+<div class="main-outer-box">
     <div class="form-box">
         {% csrf_token %}
         <h3 class="text-center" style="color: white; margin-bottom: 4vh;">LOGIN HERE</h3>
@@ -18,4 +18,14 @@
         </div>
     </div>
 </div>
+
+<div>
+    {% if messages %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+    {% endif %}
+</div>
+
+
 {% endblock %}

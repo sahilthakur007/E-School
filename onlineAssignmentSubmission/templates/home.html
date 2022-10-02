@@ -1,19 +1,22 @@
 {% extends "base.html"%}
 {% block content%}
 <div class="main-outer-box"> 
-    <div class="main-image">
-    </div>
+    <div class="main-image"></div>
 <div class="main-box">
     <div class="main-options">
         <div class="main-option">
-            <label><h6>New User?</h6></label>
-            <button class="btn-lg main-button" style="background-color: #263238; "><a href="{% url 'signup' %}" style="text-decoration: none; color: white;"><b>Sign up</b></a></button>
+            <label><h5>New User?</h5></label>
+            <button class="btn-lg main-button" style="background-color: #263238; "><a href="{% url 'signup' %}" style="text-decoration: none; color: white;"><b>Create New Account</b></a></button>
         </div>
         <div class="main-option">
-            <label><h6>Account already exists?</h6></label>
-            <button class="btn-lg main-button" style="background-color: #263238; "><a href="{% url 'loginTeacher' %}" style="text-decoration: none; color: white;"><b>FacultyLogin</b></a></button>
+            <label><h5>Account already exists?</h5></label>
+            <div style="display: flex;">
+            <button class="btn-lg main-button" style="background-color: #263238; "><a href="{% url 'loginTeacher' %}" style="text-decoration: none; color: white;"><b>Faculty Login</b></a></button>
             <button class="btn-lg main-button" style="background-color: #263238; "><a href="{% url 'loginStudent' %}"
-                    style="text-decoration: none; color: white;"><b>Studnet Login</b></a></button>
+                    style="text-decoration: none; color: white;"><b>Student Login</b></a></button>
+            <button class="btn-lg main-button" style="background-color: #263238; "><a href="/admin"
+                    style="text-decoration: none; color: white;"><b>Admin Login</b></a></button>
+            </div>
         </div>
     </div>
 </div>

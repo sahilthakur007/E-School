@@ -5,6 +5,7 @@ from .forms import *
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib import messages
 # Create your views here.
 
 
@@ -75,6 +76,7 @@ def listAllAssignmentForSubjectsStudent(request, course_id):
 def listAllSolutionForAssignment(request, assignment_id):
 
     # print(allSollutions)
+    solution={}
     if request.method == "POST":
         marks = request.POST['marks']
         solution_id = request.POST['solution_id']
@@ -86,7 +88,8 @@ def listAllSolutionForAssignment(request, assignment_id):
     allSollutions = assignment.submission_set.all()
     print(allSollutions)
     context = {
-        "sollutions": allSollutions
+        "sollutions": allSollutions,
+        "solution":solution
     }
     return render(request, "list_all_solutions_for_assignment.html", context)
 
@@ -134,13 +137,13 @@ def registerFaculty(request):
         print(roll)
         if form.is_valid():
             user = form.save()
-            print("true")
+            print(form)
             firstname = request.POST['first_name']
             lastname = request.POST['last_name']
             email = request.POST['email']
             password = request.POST['password']
             username = request.POST['username']
-
+   
             user.set_password(user.password)
             user.save()
             if roll == "Teacher":
@@ -148,11 +151,11 @@ def registerFaculty(request):
                     firstname=firstname, lastname=lastname, email=email, password=password, identity="TEACHER", username=username)
                 return redirect("loginTeacher")
             else:
-                # PRN = request.POST['PRN']
+                PRN = request.POST['prn']
                 Student.objects.create(
-                    firstname=firstname, lastname=lastname, email=email, password=password, identity="STUDENT", username=username)
+                    firstname=firstname, lastname=lastname, email=email, password=password, identity="STUDENT", username=username,PRN=prn)
                 return redirect("loginStudent")
-        else:
+        else:   
             print(form.errors)
 
     context = {
@@ -175,6 +178,8 @@ def loginStudent(request):
         if user is not None:
             login(request, user)
             return redirect("studentHome")
+        else: 
+            messages.error(request, "Invaild Credentials")
 
     return render(request, "studentlogin.html", {})
 
@@ -193,6 +198,8 @@ def loginTeacher(request):
         if user is not None:
             login(request, user)
             return redirect("allSubjects")
+        else:
+            messages.error(request, "Invaild Credentials")
 
     return render(request, "studentlogin.html", {})
 def logoutuser(request):
