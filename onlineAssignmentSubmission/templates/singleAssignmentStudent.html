@@ -1,7 +1,7 @@
 {% extends "base.html"%}
 {% block content%}
 <div class="main-outer-box"> 
-    <h3 class="mt-5">Assignment Submission</h3>
+    <h3 class="mt-5">Assignment Submission </h3>
 
     <div class="form-control" style="width:70vw; margin: 1vh 0px;box-shadow: 0.5px 0.5px 4px gray;">
         <div style="display: flex; justify-content: space-between;">
@@ -10,8 +10,16 @@
         </div>
         <div style="margin: 2vh 0px;">
             <div class="form-control"><b>{{assignment.instruction}}</b></div>
-            <a href="{{assignment.question.url}}" style="text-decoration: none;"><div class="form-control" style="width:20vw; margin: 2vh 0px;">Download Assignment file</div></a>
+            <a href="{{assignment.question.url}}" target="_blank" style="text-decoration: none;"><div class="form-control" style="width:20vw; margin: 2vh 0px;">Download Assignment file</div></a>
         </div>
+        {% if sollution  %}
+<div style="margin: 2vh 0px;">
+    <a href="{{sollution.answer.url}}" target="_blank" style="text-decoration: none;">
+        <div class="form-control" style="width:20vw; margin: 2vh 0px;">Download Submission file</div>
+        <div>submitted</div>
+    </a>
+</div>
+        {% else %}
         <div style="display: flex; align-items: center; justify-content: center; margin-top: 2vh;">
             <form style="display: flex;" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -20,6 +28,7 @@
                 <button class="btn btn-info" type="submit">Submit</button>
             </form>
         </div>
+        {% endif %}
     </div>
 
 </div>

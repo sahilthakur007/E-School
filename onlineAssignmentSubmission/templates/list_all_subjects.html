@@ -1,23 +1,6 @@
 {% extends "base.html"%}
 {% block content %}
-<div class="main-outer-box"> 
-    <div class="form-box">
-        {% csrf_token %}
-        <h3 class="text-center" style="color: white; margin-bottom: 4vh;">ADD NEW STUDENT</h3>
-        <form method="post">
-            {%csrf_token%}
-            <div class="form-outline mb-2">
-                <select class="select role-selection" name="select-student-prn" id="select-student-prn"> 
-                <option value="">Select PRN</option>
-                  <option value="PRN 1" name="">PRN 1</option>
-                  <option value="PRN 2">PRN 2</option>
-                </select>
-            </div>
-            <div class="d-flex justify-content-center">
-            <button type="submit" class="btn-info btn-lg main-button">Add</button>
-            </div>
-        </form>
-    </div>
+
     <h3 class="mt-5">Your Subjects</h3>
     {%for subject in subjects%}
     <a href="../{{subject.id}}/assignments" style="text-decoration: none;">

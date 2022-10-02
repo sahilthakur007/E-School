@@ -11,7 +11,7 @@ from django import forms
 from .models import *
 
 
-class TeacherRegistrationForm(forms.ModelForm):
+class RegistrationForm(forms.ModelForm):
 	# first_name: forms.CharField(max_length=100,  widgets=forms.TextInput(
 	# 	attrs={'class': 'form-control'}))
 	# last_name: forms.CharField(max_length=100, widgets=forms.TextInput(
