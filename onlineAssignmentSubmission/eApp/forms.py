@@ -44,6 +44,8 @@ class TeacherProfileForm(forms.ModelForm):
         fields = ['firstname', 'lastname', 'email', 'password', 'mobile']
 
 
+class DatePickerInput(forms.DateInput):
+    input_type = 'date'
 class AssignmentCreateForm(forms.ModelForm):
 	class Meta:
 		model = Assignment
@@ -53,7 +55,8 @@ class AssignmentCreateForm(forms.ModelForm):
 			'question': forms.FileInput(attrs={'class': 'form-control form-input'}),
 			'instruction': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'Instruction to submit'}),
 			'maxmarks': forms.NumberInput(attrs={'class': 'form-control form-input', 'placeholder': 'Maximum Marks For assignent'}),
-			'deadline': forms.DateInput(attrs={'class': 'form-control form-input', 'placeholder': "dd/mm/yy"}),
+			'deadline': DatePickerInput(attrs={'class': 'form-control form-input'}),
+			
 
 		}
 
