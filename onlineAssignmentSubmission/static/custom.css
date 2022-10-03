@@ -86,4 +86,27 @@
     justify-content: center;
     margin-top: 4vh;
 }
-
+.submission-form-download{
+    width:20vw; 
+    margin: 2vh 0px;
+}
+@media screen and (max-width: 920px) {
+    .main-button{
+        width: 100vw;
+    }
+}
+@media screen and (max-width: 920px) {
+    .main-image{
+        width: 40vw;
+        height: 32vw;
+    }
+}
+@media screen and (max-width: 820px) {
+    .main-image{
+        width: 90vw;
+        height: 42vw;
+    }
+}
+@media screen and (max-width: 490px) {
+    
+}

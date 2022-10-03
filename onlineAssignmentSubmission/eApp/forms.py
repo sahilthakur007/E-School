@@ -11,7 +11,7 @@ from django import forms
 from .models import *
 
 
-class TeacherRegistrationForm(forms.ModelForm):
+class RegistrationForm(forms.ModelForm):
 	# first_name: forms.CharField(max_length=100,  widgets=forms.TextInput(
 	# 	attrs={'class': 'form-control'}))
 	# last_name: forms.CharField(max_length=100, widgets=forms.TextInput(
@@ -27,11 +27,11 @@ class TeacherRegistrationForm(forms.ModelForm):
 		model = User
 		fields = ['first_name', 'last_name', 'username', 'email', 'password']
 		widgets = {
-			'first_name': forms.TextInput(attrs={'class': 'form-control form-input-fname', 'placeholder': 'firstname'}),
-			'last_name': forms.TextInput(attrs={'class': 'form-control form-input-lname', 'placeholder': 'lastname'}),
-			'username': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'username'}),
-			'email': forms.EmailInput(attrs={'class': 'form-control form-input', 'placeholder': 'email'}),
-			'password': forms.PasswordInput(attrs={'class': 'form-control form-input', 'placeholder': 'password'}),
+			'first_name': forms.TextInput(attrs={'class': 'form-control form-input-fname', 'placeholder': 'firstname','required':'true'}),
+			'last_name': forms.TextInput(attrs={'class': 'form-control form-input-lname', 'placeholder': 'lastname','required':'true'}),
+			'username': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'username','required':'true'}),
+			'email': forms.EmailInput(attrs={'class': 'form-control form-input', 'placeholder': 'email','required':'true'}),
+			'password': forms.PasswordInput(attrs={'class': 'form-control form-input', 'placeholder': 'password','required':'true'}),
 
 
 
@@ -44,6 +44,8 @@ class TeacherProfileForm(forms.ModelForm):
         fields = ['firstname', 'lastname', 'email', 'password', 'mobile']
 
 
+class DatePickerInput(forms.DateInput):
+    input_type = 'date'
 class AssignmentCreateForm(forms.ModelForm):
 	class Meta:
 		model = Assignment
@@ -53,7 +55,8 @@ class AssignmentCreateForm(forms.ModelForm):
 			'question': forms.FileInput(attrs={'class': 'form-control form-input'}),
 			'instruction': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'Instruction to submit'}),
 			'maxmarks': forms.NumberInput(attrs={'class': 'form-control form-input', 'placeholder': 'Maximum Marks For assignent'}),
-			'deadline': forms.DateInput(attrs={'class': 'form-control form-input', 'placeholder': "dd/mm/yy"}),
+			'deadline': DatePickerInput(attrs={'class': 'form-control form-input'}),
+			
 
 		}
 
@@ -63,7 +66,7 @@ class SolutionCreationForm(forms.ModelForm):
 		model = Submission
 		fields =["name","answer"]
 		widgets = {
-			'name': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'Title Of Assignment'}),
-			'answer': forms.FileInput(attrs={'class': 'form-control form-input'}),
+			'name': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'Title Of Assignment','required':'true'}),
+			'answer': forms.FileInput(attrs={'class': 'form-control form-input','style':'margin:0px 2vw','required':'true'}),
 
 		}
