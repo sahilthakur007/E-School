@@ -39,16 +39,30 @@
         {% if sollution %}
         <div style="margin: 2vh 0px;">
             <div class="assignment-list">
-                <div style="color: rgb(1, 85, 1);"><h6>Assignment is submitted for evaluation</h6></div>
+                {% if sollution.isevaluated %}
+                <div style="color: rgb(1, 85, 1);">
+                    <h6>Assignment is evaluated.</h6>
+                </div>
+                {% else %}
+                <div style="color: rgb(1, 85, 1);">
+                    <h6>Assignment is submitted for evaluation.</h6>
+                </div>
+                {% endif %}
                 <a href="{{sollution.answer.url}}" target="_blank" style="text-decoration: none;">
                     <div class="form-control" style="box-shadow: 0.5px 0.5px 4px gray;">
                         Download Your Submitted File</div>
                 </a>
             </div>
         </div>
-        <div style="display: flex; justify-content:center;"> 
+        {% if sollution.isevaluated %}
+        <div style="display: flex;">
+            <div class="form-control" style="width:8vw">Marks: {{sollution.score}}</div>
+        </div>
+        {% else %}
+        <div style="display: flex; justify-content:center;">
             <div><button class="btn btn-info" type="submit" onclick="editSubmission()">Edit submission</button></div>
         </div>
+        {% endif %}
         <form style="display: none; align-items: center;" method="post" enctype="multipart/form-data"
             id="edit-submission">
             {% csrf_token %}

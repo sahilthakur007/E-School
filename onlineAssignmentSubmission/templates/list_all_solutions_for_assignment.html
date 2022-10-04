@@ -2,7 +2,7 @@
 {% block content%}
 <div class="main-outer-box">
     <h3 class="mt-5">Assignment Submissions</h3>
-
+    {% if sollutions %}
     {% for solution in sollutions%}
     <div class="form-control single-assign-teacher">
         <div style="display: flex; justify-content: space-between;">
@@ -28,6 +28,9 @@
         </div>
     </div>
     {% endfor%}
+    {% else %} 
+    <h6 style="margin-top: 2vh">No submission yet.</h6>
+    {% endif %}
 
 </div>
 {% endblock content %}

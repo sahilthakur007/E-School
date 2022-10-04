@@ -1,5 +1,6 @@
 from hmac import new
 from multiprocessing import context
+import string
 from urllib import request
 from django.shortcuts import render, redirect
 from .forms import *
@@ -50,8 +51,8 @@ def studentHome(request):
 def listAllAssignmentForSubjects(request, course_id):
     students = Student.objects.all()
     course = Course.objects.get(id=course_id)
+    teacher = Teacher.objects.get(username=request.user.username)
     allAssignments = course.assignment_set.all()
-    teacher = Teacher.objects.get(email=request.user.email)
     print(teacher)
 
     form = AssignmentCreateForm()
@@ -125,6 +126,7 @@ def singleAssignment(request, assignment_id):
 
     try:
         currentUserSolutions = solutions.get(student=student)
+        print(currentUserSolutions)
     except:
         currentUserSolutions = ""
 
@@ -132,7 +134,18 @@ def singleAssignment(request, assignment_id):
         # currentUserSolutions = solutions.get(student=student)
 
     form = SolutionCreationForm()
-    if (request.method == "POST"):
+    if request.method == "POST" and currentUserSolutions:
+        # print("true")
+        # print("true")
+        answer = request.FILES['answer']
+        name = request.POST['name']
+        currentUserSolutions.answer = answer
+        currentUserSolutions.name = name
+        currentUserSolutions.save()
+        messages.info(request, 'Assignment updated successfully.')
+
+
+    elif(request.method == "POST"):
         form = SolutionCreationForm(request.POST, request.FILES)
         print(request.FILES['answer'])
         if form.is_valid():
@@ -143,7 +156,7 @@ def singleAssignment(request, assignment_id):
             newSollution.roll = student.PRN
             newSollution.save()
             messages.info(request, 'Assignment submitted successfully.')
-            # return redirect("singleAssignment")
+            return redirect("assignments"+(string)(assignment_id))
         else:
             print(form.errors)
     context = {
@@ -262,6 +275,17 @@ def loginTeacher(request):
     return render(request, "studentlogin.html", {})
 
 def adminLogin(request):
+    if request.user.is_authenticated:
+        try:
+            student = Student.objects.get(username=request.user.username)
+            return redirect("studentHome")
+
+        except:
+               teacher = Teacher.objects.get(username=user.username)
+               if teacher.isadmin:
+                   return redirect("facultylist")
+               else:
+                    return redirect("allSubjects")
     if request.method == "POST":
         username = request.POST.get('email')
         password = request.POST.get('password')
@@ -301,12 +325,16 @@ def evaluateAssignment(request, submission_id):
         submission = Submission.objects.get(id=submission_id)
 
 @login_required(login_url='home')     
-def listAllFaculty():
+def listAllFaculty(request):
     teachers =Teacher.objects.all()
     courses  = Course.objects.all()
+    print(teachers)
+    print(courses)
     if request.method =="POST":
         teacher_id = request.POST["teacher_id"]
         course_id = request.POST["course_id"]
+        print(teacher_id+" "+course_id)
+        
         teacher =Teacher.objects.get(id=teacher_id)
         course =Course.objects.get(id=course_id)
         teacher.courses.add(course)
@@ -316,5 +344,5 @@ def listAllFaculty():
         "teachers":teachers,
         "courses":courses,
     }
-    return render(request,"adminFacultyList",{})
+    return render(request,"adminFacultyList.html",context)
 
