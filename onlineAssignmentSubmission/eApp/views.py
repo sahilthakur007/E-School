@@ -218,6 +218,7 @@ def loginStudent(request):
         
         # teacher.filter
         if user is not None:
+            student = Student.objects.get(username=user.username)
             login(request, user)
             return redirect("studentHome")
         else:
