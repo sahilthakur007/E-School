@@ -143,7 +143,7 @@ def singleAssignment(request, assignment_id):
             newSollution.roll = student.PRN
             newSollution.save()
             messages.info(request, 'Assignment submitted successfully.')
-            return redirect("singleAssignment")
+            # return redirect("singleAssignment")
         else:
             print(form.errors)
     context = {
@@ -261,6 +261,30 @@ def loginTeacher(request):
 
     return render(request, "studentlogin.html", {})
 
+def adminLogin(request):
+    if request.method == "POST":
+        username = request.POST.get('email')
+        password = request.POST.get('password')
+        # print(username+" "+password)
+
+        user = authenticate(username=username, password=password)
+        print(user)
+        # teacher.filter
+        if user is not None:
+            try:
+                teacher = Teacher.objects.get(username=user.username)
+                if(teacher.isadmin):
+                    login(request, user)
+                    return redirect("facultylist")
+                else:
+                     messages.info(request, "Login failed!")
+            except:
+                messages.info(request, "Login failed!")
+
+        else:
+            messages.info(request, "Login failed!")
+
+    return render(request, "studentlogin.html", {})
 
 @login_required(login_url='home')
 def logoutuser(request):
@@ -275,3 +299,22 @@ def evaluateAssignment(request, submission_id):
         solution_id = request.POST['solution_id']
         print(solution_id+" "+marks)
         submission = Submission.objects.get(id=submission_id)
+
+@login_required(login_url='home')     
+def listAllFaculty():
+    teachers =Teacher.objects.all()
+    courses  = Course.objects.all()
+    if request.method =="POST":
+        teacher_id = request.POST["teacher_id"]
+        course_id = request.POST["course_id"]
+        teacher =Teacher.objects.get(id=teacher_id)
+        course =Course.objects.get(id=course_id)
+        teacher.courses.add(course)
+        teacher.save()
+
+    context={
+        "teachers":teachers,
+        "courses":courses,
+    }
+    return render(request,"adminFacultyList",{})
+

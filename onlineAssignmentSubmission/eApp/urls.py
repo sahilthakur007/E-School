@@ -17,19 +17,25 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import *
 urlpatterns = [
-    path("", home,name="home"),
-    path("subjects/all",listAllSubjects,name="allSubjects"),
-    path("<int:course_id>/assignments",listAllAssignmentForSubjects,name="allAssignments"),
-    
-    path("<int:assignment_id>/submissions/",listAllSolutionForAssignment,name="allSubmissions"),
-    path("assignments/<int:assignment_id>",singleAssignment,name="singleAssignment"),
-    
-    path("register/",registerFaculty,name="signup"),
-    path("studentlogin/",loginStudent,name="loginStudent"),
-    path("teacherlogin/",loginTeacher,name="loginTeacher"),
-    path("logout/",logoutuser,name="logoutuser"),
+    path("", home, name="home"),
+    path("subjects/all", listAllSubjects, name="allSubjects"),
+    path("<int:course_id>/assignments",
+         listAllAssignmentForSubjects, name="allAssignments"),
+
+    path("<int:assignment_id>/submissions/",
+         listAllSolutionForAssignment, name="allSubmissions"),
+    path("assignments/<int:assignment_id>",
+         singleAssignment, name="singleAssignment"),
+
+    path("register/", registerFaculty, name="signup"),
+    path("studentlogin/", loginStudent, name="loginStudent"),
+    path("teacherlogin/", loginTeacher, name="loginTeacher"),
+    path("logout/", logoutuser, name="logoutuser"),
     path("student/home/", studentHome, name="studentHome"),
     path("<int:course_id>/student/assignments",
-         listAllAssignmentForSubjectsStudent, name="subjects")
-   
+         listAllAssignmentForSubjectsStudent, name="subjects"),
+    path("admin/facultylist",
+         listAllFaculty, name="facultylist")
+
+
 ]
