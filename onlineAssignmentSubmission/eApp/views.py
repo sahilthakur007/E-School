@@ -27,10 +27,10 @@ def listAllSubjects(request):
 
     teacher = Teacher.objects.get(username=request.user.username)
     allsubjects = teacher.courses.all()
+    
     print(id)
     context = {
         "subjects": allsubjects,
-
     }
     return render(request, "list_all_subjects.html", context)
 
@@ -40,7 +40,7 @@ def studentHome(request):
     student = Student.objects.get(username=request.user.username)
     allsubjects = student.courses.all()
     context = {
-        "subjects": allsubjects
+        "subjects": allsubjects,
     }
     return render(request, "homeStudent.html", context)
 
