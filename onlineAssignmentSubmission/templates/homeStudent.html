@@ -2,10 +2,14 @@
 {% block content%}
 <div class="main-outer-box"> 
     <h3 class="mt-5">Your Subjects</h3>
+    {% if subjects %} 
     {%for subject in subjects%}
     <a href="../../{{subject.id}}/student/assignments" style="text-decoration: none;">
-        <div class="form-control" style="width:50vw; margin: 2vh 0px;box-shadow: 0.5px 0.5px 4px gray;">{{subject}}</div>
+        <div class="form-control subject-name"><b>{{subject}}</b></div>
     </a>
     {%endfor%}
+    {% else %} 
+    <h6 style="margin-top: 2vh;">Subjects are not assigned to you.</h6>
+    {% endif %} 
 </div>
 {% endblock content %}
