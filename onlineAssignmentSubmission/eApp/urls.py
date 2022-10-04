@@ -35,7 +35,9 @@ urlpatterns = [
     path("<int:course_id>/student/assignments",
          listAllAssignmentForSubjectsStudent, name="subjects"),
     path("admin/facultylist",
-         listAllFaculty, name="facultylist")
+         listAllFaculty, name="facultylist"),
+    path("admin/login",
+         adminLogin, name="adminlogin")
 
 
 ]
