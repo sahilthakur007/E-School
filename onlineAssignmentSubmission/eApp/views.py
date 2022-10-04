@@ -22,12 +22,13 @@ def home(request):
             return redirect("allSubjects")
     return render(request, "home.html")
 
+
 @login_required(login_url='home')
 def listAllSubjects(request):
 
     teacher = Teacher.objects.get(username=request.user.username)
     allsubjects = teacher.courses.all()
-    
+
     print(id)
     context = {
         "subjects": allsubjects,
@@ -52,19 +53,19 @@ def listAllAssignmentForSubjects(request, course_id):
     allAssignments = course.assignment_set.all()
     teacher = Teacher.objects.get(email=request.user.email)
     print(teacher)
-    
+
     form = AssignmentCreateForm()
-    if request.method == "POST" and  request.POST.get('select-student-prn'):
+    if request.method == "POST" and request.POST.get('select-student-prn'):
         prn = request.POST.get('select-student-prn')
         student = Student.objects.get(id=prn)
         student.courses.add(course)
         student.save()
         messages.info(request, 'Student added successfully.')
-    
+
     elif request.method == "POST":
 
         form = AssignmentCreateForm(request.POST, request.FILES)
-        
+
         if form.is_valid():
             pass
             # print(form)
@@ -79,7 +80,7 @@ def listAllAssignmentForSubjects(request, course_id):
     context = {
         "assignments": allAssignments,
         "form": form,
-        "students":students
+        "students": students
     }
     return render(request, "list_all_assignments_for_subject.html", context)
 
@@ -121,15 +122,15 @@ def singleAssignment(request, assignment_id):
     assignment = Assignment.objects.get(id=assignment_id)
     student = Student.objects.get(username=request.user.username)
     solutions = assignment.submission_set.all()
-    
+
     try:
         currentUserSolutions = solutions.get(student=student)
     except:
         currentUserSolutions = ""
-         
+
     # if solutions.get(student=student):
         # currentUserSolutions = solutions.get(student=student)
-        
+
     form = SolutionCreationForm()
     if (request.method == "POST"):
         form = SolutionCreationForm(request.POST, request.FILES)
@@ -153,7 +154,6 @@ def singleAssignment(request, assignment_id):
     return render(request, "singleAssignmentStudent.html", context)
 
 
-
 def registerFaculty(request):
     if request.user.is_authenticated:
         try:
@@ -162,7 +162,6 @@ def registerFaculty(request):
 
         except:
             return redirect("allSubjects")
-
 
     form = RegistrationForm()
     # print(form)
@@ -190,10 +189,10 @@ def registerFaculty(request):
                 PRN = request.POST['prn']
                 Student.objects.create(
                     firstname=firstname, lastname=lastname, email=email, password=password, identity="STUDENT", username=username, PRN=PRN)
-                return redirect("loginStudent") 
+                return redirect("loginStudent")
         else:
             print(form.errors)
-            return render(request, "signup.html", {"err":form.errors,"form":form})
+            return render(request, "signup.html", {"err": form.errors, "form": form})
 
     context = {
         "form": form
@@ -205,6 +204,7 @@ def loginStudent(request):
     if request.user.is_authenticated:
         try:
             student = Student.objects.get(username=request.user.username)
+            # login(request, user)
             return redirect("studentHome")
 
         except:
@@ -215,11 +215,16 @@ def loginStudent(request):
         print(username+" "+password)
 
         user = authenticate(username=username, password=password)
-        
+
         # teacher.filter
         if user is not None:
-            login(request, user)
-            return redirect("studentHome")
+            try:
+                student = Student.objects.get(username=user.username)
+                login(request, user)
+                return redirect("studentHome")
+            except:
+                   messages.info(request, "Login failed!")
+
         else:
             messages.info(request, "Login failed!")
 
@@ -231,10 +236,10 @@ def loginTeacher(request):
         try:
             student = Student.objects.get(username=request.user.username)
             return redirect("studentHome")
-           
+
         except:
-            return redirect("allSubjects")
-            
+               return redirect("allSubjects")  
+
     if request.method == "POST":
         username = request.POST.get('email')
         password = request.POST.get('password')
@@ -244,8 +249,13 @@ def loginTeacher(request):
         print(user)
         # teacher.filter
         if user is not None:
-            login(request, user)
-            return redirect("allSubjects")
+            try:
+                teacher = Teacher.objects.get(username=user.username)
+                login(request, user)
+                return redirect("allSubjects")
+            except:
+                  messages.info(request, "Login failed!")
+
         else:
             messages.info(request, "Login failed!")
 
@@ -265,4 +275,3 @@ def evaluateAssignment(request, submission_id):
         solution_id = request.POST['solution_id']
         print(solution_id+" "+marks)
         submission = Submission.objects.get(id=submission_id)
-
