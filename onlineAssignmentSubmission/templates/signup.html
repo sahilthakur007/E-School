@@ -43,11 +43,15 @@
                 <button type="submit" class="btn-info btn-lg main-button" style="background-color: #00E5FF;">Sign
                     up</button>
             </div>
-            <div class="other-option">
-                <label><h6 style="color: white;">Account already exists?</h6></label>
-                <button class="btn btn-signup" style="margin: 0px;"><a href="{% url 'home' %}" style="text-decoration: none; color: black;"><b>Log in</b></a></button>
-            </div>
+            
         </form>
+        <div class="other-option">
+            <label>
+                <h6 style="color: white;">Account already exists?</h6>
+            </label>
+            <button class="btn btn-signup" style="margin: 0px;"><a href="{% url 'home' %}"
+                    style="text-decoration: none; color: black;"><b>Log in</b></a></button>
+        </div>
     </div>
 </div>
 <script>
