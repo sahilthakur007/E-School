@@ -2,6 +2,7 @@ from hmac import new
 from multiprocessing import context
 import string
 from urllib import request
+from django.urls import reverse
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
@@ -68,13 +69,13 @@ def listAllAssignmentForSubjects(request, course_id):
         form = AssignmentCreateForm(request.POST, request.FILES)
 
         if form.is_valid():
-            pass
-            # print(form)
             newAssignments = form.save(commit=False)
             newAssignments.course = course
             newAssignments.teacher = teacher
             newAssignments.save()
+            form = AssignmentCreateForm()
             messages.info(request, 'Assignment added successfully.')
+            redirect(reverse('allAssignments', args=[course_id]))
 
         else:
             messages.info(request, "Enter valid date format")
@@ -155,8 +156,10 @@ def singleAssignment(request, assignment_id):
             newSollution.assignment = assignment
             newSollution.roll = student.PRN
             newSollution.save()
+            currentUserSolutions = newSollution
+            form = SolutionCreationForm()
             messages.info(request, 'Assignment submitted successfully.')
-            return redirect("assignments"+(string)(assignment_id))
+
         else:
             print(form.errors)
     context = {
@@ -339,6 +342,7 @@ def listAllFaculty(request):
         course =Course.objects.get(id=course_id)
         teacher.courses.add(course)
         teacher.save()
+        messages.info(request, 'Course assigned successfully.')
 
     context={
         "teachers":teachers,
