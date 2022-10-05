@@ -346,7 +346,7 @@ def listAllFaculty(request):
                          messages.info(request, "Subject alredy present")
                      except:
                             Course.objects.create(name= newCourse)
-                            messages.info(request,"Subject added sussesfully")
+                            messages.info(request,"Course added sussesfully")
         else:    
             teacher_id = request.POST["teacher_id"]
             course_id = request.POST["course_id"]
