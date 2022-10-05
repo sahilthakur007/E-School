@@ -331,17 +331,32 @@ def evaluateAssignment(request, submission_id):
 def listAllFaculty(request):
     teachers =Teacher.objects.all()
     courses  = Course.objects.all()
-    print(teachers)
-    print(courses)
+    # print(teachers)
+    # print(courses)
+    
     if request.method =="POST":
-        teacher_id = request.POST["teacher_id"]
-        course_id = request.POST["course_id"]
-        print(teacher_id+" "+course_id)
         
-        teacher =Teacher.objects.get(id=teacher_id)
-        course =Course.objects.get(id=course_id)
-        teacher.courses.add(course)
-        teacher.save()
+        try:
+            newCourse = request.POST["newcourse"]
+        except:
+               newCourse = ""
+        if newCourse:
+                     try:
+                         course = Course.objects.get(name=newCourse)
+                         messages.info(request, "Subject alredy present")
+                     except:
+                            Course.objects.create(name= newCourse)
+                            messages.info(request,"Subject added sussesfully")
+        else:    
+            teacher_id = request.POST["teacher_id"]
+            course_id = request.POST["course_id"]
+            print(teacher_id+" "+course_id)
+        
+            teacher =Teacher.objects.get(id=teacher_id)
+            course =Course.objects.get(id=course_id)
+            teacher.courses.add(course)
+            teacher.save()
+            messages.info(request, 'Course assigned successfully.')
 
     context={
         "teachers":teachers,

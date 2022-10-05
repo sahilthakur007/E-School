@@ -20,20 +20,20 @@
         {% endif %}
     <div class="form-box">
         {% csrf_token %}
-        <h3 class="text-center" style="color: white; margin-bottom: 4vh;">ASSIGN SUBJECT TO FACULTY</h3>
+        <h3 class="text-center" style="color: white; margin-bottom: 4vh;">ASSIGN COURSE TO FACULTY</h3>
         <form method="post">
             {%csrf_token%}
             <div class="form-outline" style="margin: 4vh;">
                 <select class="select role-selection" name="teacher_id" id="teacher_id">
                     <option value="">Select Faculty</option>
                     {%for teacher in teachers%}
-                    <option value={{teacher.id}} name="">{{teacher.firstname}}</option>
+                    <option value={{teacher.id}} name="">{{teacher.firstname}} {{teacher.lastname}}</option>
                     {%endfor%}
                 </select>
             </div>
             <div class="form-outline" style="margin: 4vh;">
                 <select class="select role-selection" name="course_id" id="course_id">
-                    <option value="">Select Subject</option>
+                    <option value="">Select Course</option>
                     {%for course in courses%}
                     <option value={{course.id}} name="">{{course.name}}</option>
                     {%endfor%}
@@ -41,6 +41,17 @@
             </div>
             <div class="d-flex justify-content-center">
                 <button type="submit" class="btn-info btn-lg main-button">Save</button>
+            </div>
+        </form>
+    </div>
+    <div class="form-box">
+        {% csrf_token %}
+        <h3 class="text-center" style="color: white; margin-bottom: 4vh;">ADD NEW COURSE</h3>
+        <form method="post">
+            {%csrf_token%}
+            <input type="text" value="" name = "newcourse" class="form-control form-input" placeholder="Name of Course">
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn-info btn-lg main-button">Add</button>
             </div>
         </form>
     </div>
