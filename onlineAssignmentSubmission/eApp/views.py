@@ -311,7 +311,7 @@ def adminLogin(request):
         else:
             messages.info(request, "Login failed!")
 
-    return render(request, "studentlogin.html", {})
+    return render(request, "adminLogin.html", {})
 
 @login_required(login_url='home')
 def logoutuser(request):
