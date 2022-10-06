@@ -1,8 +1,8 @@
-from datetime import datetime
-import email
-from msilib.schema import Class
-from pyexpat import model
-from statistics import mode
+# from datetime import datetime
+# import email
+# from msilib.schema import Class
+# from pyexpat import model
+# from statistics import mode
 from django.db import models
 # course model 
 # student model 
