@@ -1,10 +1,10 @@
-from dataclasses import field
-from distutils.command.build_scripts import first_line_re
-from logging import PlaceHolder
-from tkinter import Widget
-from tkinter.ttk import Style
-from django.forms import ModelForm
-from django.contrib.auth.forms import UserCreationForm
+# from dataclasses import field
+# from distutils.command.build_scripts import first_line_re
+# from logging import PlaceHolder
+# from tkinter import Widget
+# from tkinter.ttk import Style
+# from django.forms import ModelForm
+# from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 
@@ -32,9 +32,6 @@ class RegistrationForm(forms.ModelForm):
 			'username': forms.TextInput(attrs={'class': 'form-control form-input', 'placeholder': 'username','required':'true'}),
 			'email': forms.EmailInput(attrs={'class': 'form-control form-input', 'placeholder': 'email','required':'true'}),
 			'password': forms.PasswordInput(attrs={'class': 'form-control form-input', 'placeholder': 'password','required':'true'}),
-
-
-
 		}
 
 
