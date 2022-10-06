@@ -90,10 +90,10 @@ DATABASES = {
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'br0arlggahh9bi07hciy',
-#         'HOST': 'br0arlggahh9bi07hciy-postgresql.services.clever-cloud.com',
-#         'USER': 'uxj55nzu5tlgjgpflb31',
-#         'PASSWORD': 'VOglFGFTIC37fOBFbzgC',
+#         'NAME': 'bkejrwyzxqiv1nehnlzw',
+#         'HOST': 'http://bkejrwyzxqiv1nehnlzw-postgresql.services.clever-cloud.com',
+#         'USER': 'utdu5zitf0m2hjnzc38s',
+#         'PASSWORD': 'RRCFhWkhYqLIPNXlptjT',
 #         'PORT': '5432'
 #     }
 # }
