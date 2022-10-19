@@ -275,7 +275,7 @@ def loginTeacher(request):
         else:
             messages.info(request, "Login failed!")
 
-    return render(request, "studentlogin.html", {})
+    return render(request, "teacherlogin.html", {})
 
 def adminLogin(request):
     if request.user.is_authenticated:
